@@ -1,17 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { PagesGenerateByChatGPT, ReactAppDefault } from "./stuffs";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p className='text-yellow-300'>
-          Welcome to website of sayphuvong
-        </p>
-      </header>
-    </div>
+    <React.Fragment>
+      <ReactAppDefault />
+      <PagesGenerateByChatGPT />
+    </React.Fragment>
   );
 }
 
