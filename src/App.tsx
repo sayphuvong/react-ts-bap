@@ -1,11 +1,10 @@
 import React from "react";
-import { PagesGenerateByChatGPT, ReactAppDefault } from "./stuffs";
+import { StuffList } from "./stuffs";
 
 function App() {
   return (
     <React.Fragment>
-      <ReactAppDefault />
-      <PagesGenerateByChatGPT />
+      <StuffList />
     </React.Fragment>
   );
 }
