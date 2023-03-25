@@ -17,11 +17,21 @@ export const stuff = stuffNames.map((name) => {
   };
 });
 
-export function StuffList() {
+interface StuffListProps {
+  overrideContentRendering?: (item: StuffItemType) => void;
+}
+
+export const StuffList: React.FC<StuffListProps> = (props) => {
+  const { overrideContentRendering } = props;
+  
   const [currentStuffItem, setCurrentStuffItem] = useState<StuffItemType>();
 
   const handleItemClick = (stuffItem: StuffItemType) => {
-    setCurrentStuffItem(stuffItem);
+    if (overrideContentRendering) {
+      overrideContentRendering(stuffItem)
+    } else {
+      setCurrentStuffItem(stuffItem);
+    }
   };
 
   const stuffContent = currentStuffItem?.element ? (
@@ -33,12 +43,12 @@ export function StuffList() {
   return (
     <div data-component={StuffList.name}>
       <ul
-        className={twMerge("flex flex-col", currentStuffItem ? "hidden" : null)}
+        className={twMerge("flex gap-4", currentStuffItem ? "hidden" : null)}
       >
         {stuff.map((stuffItem) => (
-          <li key={stuffItem.id} className="ml-6">
+          <li key={stuffItem.id} className="border border-yellow-500 rounded-lg p-2 w-fit hover:opacity-70">
             <span
-              className="cursor-pointer hover:text-green-600"
+              className="text-[currentColor] cursor-pointer"
               onClick={() => handleItemClick(stuffItem)}
             >
               {stuffItem.name}
